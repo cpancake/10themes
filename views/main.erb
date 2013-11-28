@@ -1,0 +1,8 @@
+<h1 id='main_title'>Ten Themes Across American History</h1>
+<% Term.desc(:id).each do |t| %>
+<div class='row term-row'>
+	<a href='/term/view/<%= t.id %>' class='term-title'><%= t.term %></a>
+	<span class='term-date'><%= t.time.ago_in_words %></span>
+	<span class='term-response-count'><strong><%= t.responses.count %></strong> responses</span>
+</div>
+<% end %>

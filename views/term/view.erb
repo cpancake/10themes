@@ -1,0 +1,45 @@
+<h1 id='main_title'><%= CGI.escapeHTML(@term[:term]) %></h1>
+<h3 id='sub_title_resp' style='font-size: 18px;'>
+	<em>As added by <strong><%= CGI.escapeHTML(@term[:user][:name]) %></strong>, <%= @term[:date] %></em> 
+	<% if session[:user][:teacher] %> <a class='edit-link' href='/term/edit/<%=@term[:id]%>'>(edit)</a> <% end %>
+</h3>
+<% if @term[:responses].count == 0 %>
+	<em>No responses have been made.</em>
+<% else %>
+	<% @term[:responses].each do |r| %>
+	<a name='response<%=r.id%>'></a>
+	<div class='row resp-row'>
+		<div class='col-lg-2 resp-info'>
+			<span class='resp-name'><%= CGI.escapeHTML(r.user.name) %></span>
+			<br/>
+			<span class='resp-date'><%= r.time.ago_in_words %></span>
+			<br/>
+		</div>
+		<div class='col-lg-10 resp-text'>
+			<p style='float:left;'><%= @markdown.render(r.response) %></p>
+			<form method='post' action='/term/response/rate' class='resp-votes-container'>
+				<input type='hidden' name='resp_id' value='<%= r.id %>'>
+				<span class='resp-votes' id='resp-votes-id<%=r.id%>'><%= r_count = Rating.where(response: r).count %> Like<% if r_count != 1 %>s<% end %></span>
+				<% if not Rating.where({user: session[:user][:id], response: r}).exists? %>
+					<input type='submit' class='btn btn-link rate-button' data-resp-id='<%=r.id%>' value='(like)'>
+				<% else %>
+					<input type='submit' class='btn btn-link rate-button' data-resp-id='<%=r.id%>' value='(unlike)'>
+				<% end %>
+				<% if r.user.id == session[:user][:id] %>
+					<a class='edit-link' href='/term/response/edit/<%=r.id%>'>(edit)</a>
+				<% end %>
+			</form>
+		</div>
+	</div>
+	<% end %>
+<% end %>
+<% if session[:user] %>
+<form method='post' action='/term/response/add'>
+	<h1>What is this term, and what themes does it relate to?</h1>
+	<textarea id='response_area' class='col-lg-12' name='response' placeholder='My response is...'></textarea>
+	<input type='hidden' name='post_id' value='<%= @term[:id] %>'>
+	<input type='submit' value='Add Response' class='btn btn-primary col-lg-2 col-lg-offset-10'>
+</form>
+<% else %>
+<div style='margin-top: 20px;'>You'll need to log in to post a response. Try the top right!</div>
+<% end %>

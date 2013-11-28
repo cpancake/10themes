@@ -1,0 +1,121 @@
+html, body, h1, h2, h3, h4, h5, h6
+{
+	font-family: 'Gentium Book Basic', 'Old Standard TT', 'Georgia', 'Times New Roman', serif;
+}
+html, body
+{
+	font-size: 18px;
+	margin-bottom: 100px;
+}
+.container
+{
+	padding-top: 20px;
+}
+#main_title
+{
+	font-size: 48pt;
+	text-align: center;
+}
+#sub_title, #sub_title_resp, .sub_title
+{
+	text-align: center;
+}
+a, a:visited, a:hover
+{
+	color: #aaa;
+	text-decoration: none;
+}
+a:hover
+{
+	color: #777;
+}
+#sub_title p, .sub_title p
+{
+	font-size: 18px;
+}
+#inline_input, #inline_input:focus
+{
+	display: inline-block;
+	outline: none;
+	border: 0;
+	width: 40%;
+	text-shadow: none;
+	box-shadow: none;
+	padding: 0;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-bottom: 1px dotted #ccc;
+	padding-bottom: 5px;
+	color: #333;
+	line-height: 26px;
+	font-size: 24px;
+}
+.term-row
+{
+	border-bottom: 1px solid #ddd;
+	position: relative;
+}
+.term-title
+{
+	font-size: 24px;
+}
+.term-date
+{
+	padding-left: 20px;
+	font-size: 14px;
+}
+#response_area
+{
+	border: 0;
+	resize: none;
+	outline: 0;
+	padding: 0;
+	color: #555;
+}
+.resp-name
+{
+	font-weight: bold;
+}
+.resp-date
+{
+	font-size: 14px;
+}
+.resp-votes-container
+{
+	float:right;
+}
+.resp-row
+{
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	position: relative;
+}
+#sub_title_resp
+{
+	margin-bottom: 30px;
+	margin-top: 0;
+}
+.rate-button
+{
+	padding: 0;
+}
+.term-response-count
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 14px;
+}
+.edit-link
+{
+	font-size: 14px;
+}
+#footer
+{
+	position: absolute;
+	bottom: 0;
+	font-size: 14px;
+	text-align: center;
+}
